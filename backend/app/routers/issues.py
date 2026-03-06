@@ -55,7 +55,7 @@ async def enrich_issue(request: EnrichRequest):
     github = get_github_service()
 
     if not ai:
-        raise HTTPException(status_code=500, detail="AI service not configured. Set OPENAI_API_KEY.")
+        raise HTTPException(status_code=500, detail="AI service not configured. Set DEVIN_API_TOKEN and DEVIN_ORG_ID.")
 
     cached = store.get_issue(request.repo, request.issue_number)
     if cached and cached.enrichment.summary:
@@ -98,7 +98,7 @@ async def enrich_all_issues(request: RepoRequest):
     """AI-enrich all cached issues for a repo."""
     ai = get_ai_service()
     if not ai:
-        raise HTTPException(status_code=500, detail="AI service not configured. Set OPENAI_API_KEY.")
+        raise HTTPException(status_code=500, detail="AI service not configured. Set DEVIN_API_TOKEN and DEVIN_ORG_ID.")
 
     issues = store.get_issues(request.repo)
     if not issues:

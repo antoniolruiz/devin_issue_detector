@@ -134,4 +134,3 @@ class ConfigRequest(BaseModel):
     github_token: str = ""
     devin_api_token: str = ""
     devin_org_id: str = ""
-    openai_api_key: str = ""

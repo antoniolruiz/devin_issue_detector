@@ -102,7 +102,6 @@ export async function updateConfig(config: {
   github_token?: string;
   devin_api_token?: string;
   devin_org_id?: string;
-  openai_api_key?: string;
 }): Promise<{ status: string }> {
   return apiFetch<{ status: string }>("/api/config/update", {
     method: "POST",

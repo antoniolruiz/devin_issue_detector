@@ -77,7 +77,6 @@ export interface ExecutionSession {
 export interface ConfigStatus {
   github_configured: boolean;
   devin_configured: boolean;
-  openai_configured: boolean;
 }
 
 export type ScopingAction = "approve" | "challenge" | "modify" | "reject";

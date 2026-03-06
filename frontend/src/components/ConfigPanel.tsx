@@ -9,7 +9,6 @@ export function ConfigPanel() {
   const [githubToken, setGithubToken] = useState("");
   const [devinToken, setDevinToken] = useState("");
   const [devinOrgId, setDevinOrgId] = useState("");
-  const [openaiKey, setOpenaiKey] = useState("");
   const [saving, setSaving] = useState(false);
   const [showTokens, setShowTokens] = useState(false);
 
@@ -24,14 +23,12 @@ export function ConfigPanel() {
         github_token: githubToken || undefined,
         devin_api_token: devinToken || undefined,
         devin_org_id: devinOrgId || undefined,
-        openai_api_key: openaiKey || undefined,
       });
       const newStatus = await getConfigStatus();
       setStatus(newStatus);
       setGithubToken("");
       setDevinToken("");
       setDevinOrgId("");
-      setOpenaiKey("");
     } catch {
       // ignore
     }
@@ -75,20 +72,6 @@ export function ConfigPanel() {
                 value={githubToken}
                 onChange={(e) => setGithubToken(e.target.value)}
                 placeholder="ghp_..."
-                className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-indigo-500"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="text-xs font-medium text-zinc-400">OpenAI API Key</label>
-                {status && <StatusDot configured={status.openai_configured} />}
-              </div>
-              <input
-                type={showTokens ? "text" : "password"}
-                value={openaiKey}
-                onChange={(e) => setOpenaiKey(e.target.value)}
-                placeholder="sk-..."
                 className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-indigo-500"
               />
             </div>
