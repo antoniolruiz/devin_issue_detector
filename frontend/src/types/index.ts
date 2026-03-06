@@ -9,6 +9,7 @@ export interface IssueEnrichment {
   impact: string;
   confidence_score: number;
   suggested_next_steps: string[];
+  is_fallback: boolean;
 }
 
 export interface GitHubIssue {

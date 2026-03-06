@@ -21,7 +21,7 @@ export function IssueRow({ issue, onUpdate, onScope }: IssueRowProps) {
   const [enriching, setEnriching] = useState(false);
 
   const { enrichment } = issue;
-  const hasEnrichment = enrichment.summary !== "";
+  const hasEnrichment = enrichment.summary !== "" && !enrichment.is_fallback;
 
   const handleEnrich = async (e: React.MouseEvent) => {
     e.stopPropagation();
