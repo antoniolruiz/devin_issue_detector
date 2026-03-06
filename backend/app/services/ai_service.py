@@ -118,6 +118,7 @@ Return ONLY valid JSON."""
             impact="Could not generate AI analysis.",
             confidence_score=50,
             suggested_next_steps=["Review the issue manually"],
+            is_fallback=True,
         )
 
     def _parse_enrichment(

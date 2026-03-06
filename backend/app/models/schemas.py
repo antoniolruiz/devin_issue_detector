@@ -46,6 +46,7 @@ class IssueEnrichment(BaseModel):
     impact: str = ""
     confidence_score: int = Field(default=50, ge=0, le=100)
     suggested_next_steps: list[str] = Field(default_factory=list)
+    is_fallback: bool = False
 
 
 class GitHubIssue(BaseModel):

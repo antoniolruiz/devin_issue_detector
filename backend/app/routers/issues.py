@@ -58,7 +58,7 @@ async def enrich_issue(request: EnrichRequest):
         raise HTTPException(status_code=500, detail="AI service not configured. Set DEVIN_API_TOKEN and DEVIN_ORG_ID.")
 
     cached = store.get_issue(request.repo, request.issue_number)
-    if cached and cached.enrichment.summary:
+    if cached and cached.enrichment.summary and not cached.enrichment.is_fallback:
         return cached
 
     if not cached:
@@ -106,7 +106,7 @@ async def enrich_all_issues(request: RepoRequest):
 
     enriched_list = []
     for enriched in issues:
-        if enriched.enrichment.summary:
+        if enriched.enrichment.summary and not enriched.enrichment.is_fallback:
             enriched_list.append(enriched)
             continue
         try:
