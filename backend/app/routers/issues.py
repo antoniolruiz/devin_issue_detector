@@ -76,9 +76,12 @@ async def enrich_issue(request: EnrichRequest):
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"AI enrichment failed: {str(e)}")
 
-    status = IssueStatus.OPEN
-    if issue.state == "closed":
-        status = IssueStatus.RESOLVED
+    if cached:
+        status = cached.status
+    else:
+        status = IssueStatus.OPEN
+        if issue.state == "closed":
+            status = IssueStatus.RESOLVED
 
     enriched = EnrichedIssue(
         issue=issue,

@@ -77,7 +77,7 @@ Format your response clearly with numbered sections."""
             "content": f"Failed to start Devin session: {str(e)}",
         })
 
-    if cached_issue:
+    if cached_issue and session.status == "running":
         cached_issue.status = IssueStatus.IN_PROGRESS
         store.set_issue(request.repo, cached_issue)
 

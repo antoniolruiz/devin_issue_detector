@@ -86,10 +86,11 @@ If you need to deviate from the plan, document the deviation and reason."""
             "content": f"Failed to start Devin execution: {str(e)}",
         })
 
-    cached_issue = store.get_issue(scoping.repo, scoping.issue_number)
-    if cached_issue:
-        cached_issue.status = IssueStatus.IN_PROGRESS
-        store.set_issue(scoping.repo, cached_issue)
+    if session.status == ExecutionStatus.RUNNING:
+        cached_issue = store.get_issue(scoping.repo, scoping.issue_number)
+        if cached_issue:
+            cached_issue.status = IssueStatus.IN_PROGRESS
+            store.set_issue(scoping.repo, cached_issue)
 
     return session
 
