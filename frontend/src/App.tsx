@@ -16,7 +16,7 @@ import type {
 } from "./types";
 
 function App() {
-  const [repo, setRepo] = useState("antoniolruiz/devin_demo");
+  const [repo, setRepo] = useState("antoniolruiz/devin_demo_v2");
   const [issues, setIssues] = useState<EnrichedIssue[]>([]);
   const [loading, setLoading] = useState(false);
   const [enriching, setEnriching] = useState(false);
@@ -230,7 +230,7 @@ function App() {
             <h2 className="text-lg font-medium text-zinc-400">No issues loaded</h2>
             <p className="text-sm text-zinc-500 max-w-md mx-auto">
               Enter a GitHub repository above and click &quot;Load Issues&quot; to fetch and display issues.
-              The default repository is <code className="text-indigo-400">antoniolruiz/devin_demo</code>.
+              The default repository is <code className="text-indigo-400">antoniolruiz/devin_demo_v2</code>.
             </p>
           </div>
         )}

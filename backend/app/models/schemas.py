@@ -67,7 +67,7 @@ class EnrichedIssue(BaseModel):
 
 
 class RepoRequest(BaseModel):
-    repo: str = "antoniolruiz/devin_demo"
+    repo: str = "antoniolruiz/devin_demo_v2"
 
 
 class EnrichRequest(BaseModel):
