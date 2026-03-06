@@ -175,13 +175,26 @@ Return ONLY valid JSON."""
         start = text.find("{")
         if start != -1:
             depth = 0
+            in_string = False
+            escape = False
             for i in range(start, len(text)):
-                if text[i] == "{":
-                    depth += 1
-                elif text[i] == "}":
-                    depth -= 1
-                    if depth == 0:
-                        return text[start : i + 1]
+                c = text[i]
+                if escape:
+                    escape = False
+                    continue
+                if c == "\\" and in_string:
+                    escape = True
+                    continue
+                if c == '"' and not escape:
+                    in_string = not in_string
+                    continue
+                if not in_string:
+                    if c == "{":
+                        depth += 1
+                    elif c == "}":
+                        depth -= 1
+                        if depth == 0:
+                            return text[start : i + 1]
         return text
 
     def _infer_complexity(self, labels: list[str]) -> Complexity:
