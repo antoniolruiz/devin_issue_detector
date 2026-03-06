@@ -172,8 +172,6 @@ Return ONLY valid JSON."""
     def _extract_json(self, text: str) -> str:
         """Try to extract a JSON object from text that may contain other content."""
         text = text.strip()
-        if text.startswith("{"):
-            return text
         start = text.find("{")
         if start != -1:
             depth = 0
